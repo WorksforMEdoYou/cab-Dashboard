@@ -1,7 +1,10 @@
+// Menubar.jsx
 import React from 'react';
-import { Link } from 'react-router-dom';
+import PropTypes from 'prop-types';
+import MenuItem from './MenuItem'; // Import the MenuItem component
 
 const Menubar = ({ isVisible, setIsVisible, activeButton, setActiveButton }) => {
+  // Define menu items
   const menuItems = [
     { label: 'Dashboard', path: '/', icon: 'grid_view', id: 'dashboard' },
     { label: 'Bookings', path: '/Bookings', icon: 'date_range', id: 'bookings' },
@@ -36,46 +39,37 @@ const Menubar = ({ isVisible, setIsVisible, activeButton, setActiveButton }) => 
       {/* Menu Items */}
       <div className="flex flex-col mt-2 p-1 gap-3">
         {menuItems.map((item) => (
-          <Link key={item.id} to={item.path}>
-            <button
-              className={`flex flex-row gap-1 items-center p-1 relative group w-full rounded-md ${
-                activeButton === item.id ? 'bg-[#F9F9F9]' : 'bg-white'
-              }`}
-              onClick={() => {
-                setActiveButton(item.id);
-                setIsVisible(false); // Close menu after selection (for smaller screens)
-              }}
-            >
-              <i
-                className="material-icons"
-                style={{ color: activeButton === item.id ? '#E45200' : '#797979' }}
-              >
-                {item.icon}
-              </i>
-              <p
-                className={`text-xs md:text-sm ${
-                  activeButton === item.id ? 'text-black' : 'text-[#797979]'
-                }`}
-              >
-                {item.label}
-              </p>
-              {activeButton === item.id && (
-                <div className="w-3 h-[20px] bg-[#E45200] rounded-l-full absolute bottom-[6px] right-0"></div>
-              )}
-            </button>
-          </Link>
+          <MenuItem
+            key={item.id}
+            label={item.label}
+            path={item.path}
+            icon={item.icon}
+            isActive={activeButton === item.id}
+            onClick={() => {
+              setActiveButton(item.id); // Update active button
+              setIsVisible(false); // Close menu for small screens
+            }}
+          />
         ))}
       </div>
 
-      {/* Create Booking */}
+      {/* Create Booking Button */}
       <div className="rounded-2xl bg-[#E45200] flex flex-col items-center gap-2 p-4 mt-3">
         <i className="material-icons text-white">emoji_transportation</i>
         <button className="border border-white rounded-xl bg-[#E45200] p-1">
-          <p className="text-white text-sm font-semibold md:test-xl">Create Booking</p>
+          <p className="text-white text-sm font-semibold md:text-xl">Create Booking</p>
         </button>
       </div>
     </div>
   );
+};
+
+// PropTypes for Menubar
+Menubar.propTypes = {
+  isVisible: PropTypes.bool.isRequired,       // Whether the menu is visible or not
+  setIsVisible: PropTypes.func.isRequired,   // Function to toggle visibility 
+  activeButton: PropTypes.string.isRequired, // Currently active menu item ID
+  setActiveButton: PropTypes.func.isRequired // Function to set active menu item
 };
 
 export default Menubar;
