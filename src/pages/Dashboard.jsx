@@ -1,14 +1,8 @@
 import React from 'react';
-import RideCard from '../components/RideCard'; // Ensure this is the correct import path
+import RideCard from '../components/RideCard'; 
+import PropTypes from 'prop-types';
 
-const Dashboard = () => {
-  const rideData = [
-    { icon: 'directions_car', title: 'Taxi Rides', value: 1245 },
-    { icon: 'block', title: 'Cancelled Rides', value: 56 },
-    { icon: 'map', title: 'Active Rides', value: 43 },
-    { icon: 'payments', title: 'Total Earnings', value: '$885.0' },
-  ];
-
+const Dashboard = ({rideData}) => {
   return (
     <div className="flex flex-col gap-5 bg-[#F4F5F6] w-full h-[100vh] px-6 py-3">
       {/* Dashboard Container */}
@@ -27,6 +21,7 @@ const Dashboard = () => {
               id="places"
               name="places"
               className="text-[#E45200] border border-[#E45200] w-fit rounded-md p-1"
+              aria-label="Filter places"
             >
               <option value="all">All</option>
               <option value="current_location">Current Location</option>
@@ -44,11 +39,23 @@ const Dashboard = () => {
             loading="lazy"
             referrerPolicy="no-referrer-when-downgrade"
             title="Google Map of My Location"
+            aria-label="Google Map showing my location"
           ></iframe>
         </div>
       </div>
     </div>
   );
+};
+
+Dashboard.propTypes = {
+  rideData: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.string.isRequired,
+      icon: PropTypes.string.isRequired,
+      title: PropTypes.string.isRequired,
+      value: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
+    })
+  ).isRequired,
 };
 
 export default Dashboard;

@@ -1,32 +1,9 @@
 // Dispatchers.jsx
 import React from 'react';
 import DispatcherCard from '../components/DispatcherCard';
+import PropTypes from 'prop-types';
 
-const Dispatchers = () => {
-  const dispatchers = [
-    {
-      id: 'TRPAA001',
-      type: 'Sedan',
-      status: 'Not Assigned',
-      pickup: 'Antonietta Heights 57353',
-      dropoff: 'Gavin Lake, 08789 Bennett Lake',
-    },
-    {
-      id: 'TRPAA002',
-      type: 'SUV',
-      status: 'Assigned',
-      pickup: 'Ocean View, Miami 33101',
-      dropoff: 'Palm Street, Fort Lauderdale 33301',
-    },
-    {
-      id: 'TRPAA003',
-      type: 'Truck',
-      status: 'Finished',
-      pickup: 'Hillcrest Avenue, Denver 80204',
-      dropoff: 'Main Street, Boulder 80301',
-    },
-  ];
-
+const Dispatcher = ({dispatcherData}) => {
   return (
     <div className="min-h-[100vh] w-full bg-gray-100 px-4 py-3 flex flex-col lg:flex-row gap-4">
       {/* Dispatchers List */}
@@ -61,7 +38,7 @@ const Dispatchers = () => {
           </select>
         </div>
         {/* Dispatcher Cards */}
-        {dispatchers.map((dispatcher) => (
+        {dispatcherData.map((dispatcher) => (
           <DispatcherCard
             key={dispatcher.id}
             id={dispatcher.id}
@@ -89,4 +66,16 @@ const Dispatchers = () => {
   );
 };
 
-export default Dispatchers;
+Dispatcher.propTypes = {
+  dispatcherData: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.string.isRequired,
+      type: PropTypes.string.isRequired,
+      status: PropTypes.string.isRequired,
+      pickup: PropTypes.string.isRequired,
+      dropoff: PropTypes.string.isRequired,
+    })
+  ).isRequired,
+};
+
+export default Dispatcher;

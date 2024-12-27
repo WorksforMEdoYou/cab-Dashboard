@@ -1,4 +1,3 @@
-// DispatcherCard.jsx
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 
@@ -9,6 +8,10 @@ const DispatcherCard = ({ id, type, status, pickup, dropoff }) => {
     <div
       className="p-3 rounded-md bg-white flex flex-col gap-2 mt-2 shadow-md relative cursor-pointer"
       onClick={() => setIsVisible(!isVisible)}
+      role="button"
+      aria-expanded={isVisible}
+      aria-controls={`dispatcher-details-${id}`}
+      aria-label={`Dispatcher card for ${id}`}
     >
       {/* Vertical Line */}
       {isVisible && (
@@ -26,7 +29,7 @@ const DispatcherCard = ({ id, type, status, pickup, dropoff }) => {
       </div>
 
       {isVisible && (
-        <div className="flex flex-row gap-2 items-start pl-3">
+        <div id={`dispatcher-details-${id}`} className="flex flex-row gap-2 items-start pl-3">
           <div className="flex flex-col items-center">
             <i className="material-icons text-black text-lg">radio_button_checked</i>
             <div className="h-6 border-l border-dotted border-gray-300"></div>
@@ -49,7 +52,7 @@ DispatcherCard.propTypes = {
   type: PropTypes.string.isRequired,
   status: PropTypes.string.isRequired,
   pickup: PropTypes.string.isRequired,
-  dropoff: PropTypes.string.isRequired,
+  dropoff: PropTypes.string.isRequired
 };
 
 export default DispatcherCard;

@@ -1,4 +1,3 @@
-// Menubar.jsx
 import React from 'react';
 import PropTypes from 'prop-types';
 import MenuItem from './MenuItem'; // Import the MenuItem component
@@ -20,10 +19,11 @@ const Menubar = ({ isVisible, setIsVisible, activeButton, setActiveButton }) => 
   ];
 
   return (
-    <div
+    <nav
       className={`flex flex-col justify-center items-center p-3 bg-white w-1/5 ${
         isVisible ? 'block' : 'hidden'
       } md:block`}
+      aria-label="Main Menu"
     >
       {/* Menu Title */}
       <div className="flex flex-row gap-2 items-center justify-center">
@@ -31,13 +31,15 @@ const Menubar = ({ isVisible, setIsVisible, activeButton, setActiveButton }) => 
         <i
           className="material-icons text-red-500 font-bold cursor-pointer md:hidden"
           onClick={() => setIsVisible(false)}
+          role="button"
+          aria-label="Close menu"
         >
           close
         </i>
       </div>
 
       {/* Menu Items */}
-      <div className="flex flex-col mt-2 p-1 gap-3">
+      <div className="flex flex-col mt-2 p-1 gap-3" role="menu">
         {menuItems.map((item) => (
           <MenuItem
             key={item.id}
@@ -49,6 +51,7 @@ const Menubar = ({ isVisible, setIsVisible, activeButton, setActiveButton }) => 
               setActiveButton(item.id); // Update active button
               setIsVisible(false); // Close menu for small screens
             }}
+            role="menuitem"
           />
         ))}
       </div>
@@ -60,7 +63,7 @@ const Menubar = ({ isVisible, setIsVisible, activeButton, setActiveButton }) => 
           <p className="text-white text-sm font-semibold md:text-xl">Create Booking</p>
         </button>
       </div>
-    </div>
+    </nav>
   );
 };
 

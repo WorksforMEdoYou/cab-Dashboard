@@ -1,4 +1,3 @@
-// MenuItem.jsx
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
@@ -12,9 +11,10 @@ const MenuItem = ({ label, path, icon, isActive, onClick }) => (
       }`}
       onClick={onClick}
       aria-label={label}
+      aria-current={isActive ? 'page' : undefined}
     >
       {/* Icon */}
-      <i className="material-icons" style={{ color: isActive ? '#E45200' : '#797979' }}>
+      <i className={`material-icons ${isActive ? 'text-[#E45200]' : 'text-[#797979]'}`}>
         {icon}
       </i>
       {/* Label */}
