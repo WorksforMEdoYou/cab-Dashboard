@@ -26,7 +26,7 @@ const Navbar = ({ setMenuVisible, userImage }) => (
 
     {/* Welcome and Search */}
     <div className="flex flex-auto flex-wrap md:flex-nowrap justify-center items-center lg:gap-[50px]">
-      <div className="hidden md:flex">
+      <div className="hidden md:flex md:mr-5">
         <p className="font-semibold text-sm md:text-md">
           Welcome Back, <span className="font-bold">Ramiro!</span>
         </p>
