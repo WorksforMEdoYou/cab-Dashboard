@@ -1,0 +1,16 @@
+{
+  "files": {
+    "main.css": "/cab-Dashboard/static/css/main.99e6ee90.css",
+    "main.js": "/cab-Dashboard/static/js/main.9e39a045.js",
+    "static/js/488.14b8e101.chunk.js": "/cab-Dashboard/static/js/488.14b8e101.chunk.js",
+    "static/media/image.png": "/cab-Dashboard/static/media/image.ae1754deea593b38bddb.png",
+    "index.html": "/cab-Dashboard/index.html",
+    "main.99e6ee90.css.map": "/cab-Dashboard/static/css/main.99e6ee90.css.map",
+    "main.9e39a045.js.map": "/cab-Dashboard/static/js/main.9e39a045.js.map",
+    "488.14b8e101.chunk.js.map": "/cab-Dashboard/static/js/488.14b8e101.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.99e6ee90.css",
+    "static/js/main.9e39a045.js"
+  ]
+}
